@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 #
 # Copyright (c) 2015 CNRS
 # Author: Steve Tonneau, Joseph Mirabel
