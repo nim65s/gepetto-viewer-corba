@@ -491,7 +491,7 @@ namespace graphics {
     bool WindowsManager::resizeCapsule(const std::string& capsuleName, float newHeight) throw(std::exception){
         NodePtr_t node = getNode(capsuleName, true);
         try{
-          LeafNodeCapsulePtr_t cap = boost::dynamic_pointer_cast<LeafNodeCapsule>(node);
+          LeafNodeCapsulePtr_t cap = std::dynamic_pointer_cast<LeafNodeCapsule>(node);
           cap->resize(newHeight);
         }catch (const std::exception& exc) {
           std::cout <<capsuleName << "isn't a capsule."  << std::endl;
@@ -503,7 +503,7 @@ namespace graphics {
     bool WindowsManager::resizeArrow(const std::string& arrowName ,float newRadius, float newLength) throw(std::exception){
         NodePtr_t node = getNode(arrowName, true);
         try{
-          LeafNodeArrowPtr_t arrow = boost::dynamic_pointer_cast<LeafNodeArrow>(node);
+          LeafNodeArrowPtr_t arrow = std::dynamic_pointer_cast<LeafNodeArrow>(node);
           arrow->resize(newRadius,newLength);
         }catch (const std::exception& exc) {
           std::cout <<arrowName << "isn't an arrow."  << std::endl;
@@ -628,7 +628,7 @@ namespace graphics {
             std::cerr << "Node \"" << curveName << "\" not found." << std::endl;
             return false;
         } else {
-            LeafNodeLinePtr_t curve (boost::dynamic_pointer_cast
+            LeafNodeLinePtr_t curve (std::dynamic_pointer_cast
                 <LeafNodeLine> (node));
             if (!curve) {
               std::cerr << "Node \"" << curveName << "\" is not a curve." << std::endl;
@@ -644,7 +644,7 @@ namespace graphics {
     bool WindowsManager::setCurveLineWidth (const std::string& curveName, const float& width)
     {
         NodePtr_t node = getNode (curveName, true);
-        LeafNodeLinePtr_t curve (boost::dynamic_pointer_cast <LeafNodeLine> (node));
+        LeafNodeLinePtr_t curve (std::dynamic_pointer_cast <LeafNodeLine> (node));
         if (!curve) {
           std::cerr << "Node \"" << curveName << "\" is not a curve." << std::endl;
           return false;
@@ -691,7 +691,7 @@ namespace graphics {
 				   const std::string& filename)
   {
     NodePtr_t node (getNode (nodeName, true));
-    LeafNodeFacePtr_t faceNode (boost::dynamic_pointer_cast <LeafNodeFace>
+    LeafNodeFacePtr_t faceNode (std::dynamic_pointer_cast <LeafNodeFace>
 				(node));
     if (!faceNode) {
       std::ostringstream oss;
@@ -895,7 +895,7 @@ namespace graphics {
         NodePtr_t link;
         for (std::size_t i=0; i< urdf->getNumOfChildren (); i++) {
           link = urdf->getChild (i);
-          GroupNodePtr_t groupNode (boost::dynamic_pointer_cast
+          GroupNodePtr_t groupNode (std::dynamic_pointer_cast
               <GroupNode> (link));
           if (groupNode) {
             addGroup(link->getID(), groupNode, urdf);
